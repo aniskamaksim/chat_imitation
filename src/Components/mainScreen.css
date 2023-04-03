@@ -1,0 +1,86 @@
+.MainScreen {
+    display: flex;
+    flex-direction: column;
+    border: solid 1px green;
+    border-radius: 10px;
+    background-color: lightblue;
+    padding: 0 10px;
+}
+
+.UserBlock {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.textArea {
+    background: url("../Assets/Img/bcda1d0c891d235fbf680a893265d68f.jpg");
+    display: flex;
+    width: 320px;
+    height: 460px;
+    max-height: 100%;
+    flex-direction: column;
+    gap: 10px;
+    padding: 5px;
+    position: relative;
+    border: darkgray 0.5px solid;
+    border-radius: 10px;
+    padding-bottom: 30px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.textArea::-webkit-scrollbar {
+    width: 4px;
+}
+
+.UserDetailDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.roundImg {
+    width: 80px;
+    border-radius: 50%;
+    border: 0.01px solid gray;
+}
+
+.UserDetailDiv_name {
+    display: flex;
+    gap: 5px;
+}
+
+.wrapper_Scroll_to_bottom {
+    padding-bottom: 50px;
+}
+
+.telNumber {
+    display: inline;
+}
+
+.notelNumber {
+    display: none;
+}
+
+.InputAndNumber {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+.time {
+    display: flex;
+    flex-direction: column;
+    margin: 0 15px;
+    font-size: small;
+}
+.lastSeen{
+    display: flex;
+    color: #7B8694;
+}
