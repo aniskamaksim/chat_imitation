@@ -57,8 +57,6 @@ function App() {
         setMessages(messages.map(e => e.idMessage === messageId ?
             {...e, messageText: newMessageText === "" ? newMessageText = "message deleted" : newMessageText} : e))
     }
-    //TODO: hideNumber must not only hide number but show it too
-
     const hideNumber = (userId: string) => {
         userStatus ?
             setUsers(users.map(e => e.id === userId ? {...e, telNumber: "##########"} : e)) :
@@ -105,5 +103,4 @@ function App() {
         </div>
     );
 }
-
 export default App;
