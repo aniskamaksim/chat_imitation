@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/homeworks/static/css/main.705bf57e.css",
-    "main.js": "/homeworks/static/js/main.cd76af4b.js",
-    "static/js/787.e5a734ac.chunk.js": "/homeworks/static/js/787.e5a734ac.chunk.js",
-    "static/media/logorounded.png": "/homeworks/static/media/logorounded.14801c750f1d05555d45.png",
-    "static/media/Sasha_Gray.jpg": "/homeworks/static/media/Sasha_Gray.479cf8bc12b1d1b3f0ad.jpg",
-    "static/media/jpg": "/homeworks/static/media/bcda1d0c891d235fbf680a893265d68f.327b81ac9348d5daf9cb.jpg",
-    "index.html": "/homeworks/index.html",
-    "main.705bf57e.css.map": "/homeworks/static/css/main.705bf57e.css.map",
-    "main.cd76af4b.js.map": "/homeworks/static/js/main.cd76af4b.js.map",
-    "787.e5a734ac.chunk.js.map": "/homeworks/static/js/787.e5a734ac.chunk.js.map"
+    "main.css": "/chat_imitation/static/css/main.33a2a633.css",
+    "main.js": "/chat_imitation/static/js/main.2c72d6d0.js",
+    "static/js/787.e5a734ac.chunk.js": "/chat_imitation/static/js/787.e5a734ac.chunk.js",
+    "static/media/logorounded.png": "/chat_imitation/static/media/logorounded.14801c750f1d05555d45.png",
+    "static/media/Sasha_Gray.jpg": "/chat_imitation/static/media/Sasha_Gray.479cf8bc12b1d1b3f0ad.jpg",
+    "static/media/jpg": "/chat_imitation/static/media/bcda1d0c891d235fbf680a893265d68f.327b81ac9348d5daf9cb.jpg",
+    "index.html": "/chat_imitation/index.html",
+    "main.33a2a633.css.map": "/chat_imitation/static/css/main.33a2a633.css.map",
+    "main.2c72d6d0.js.map": "/chat_imitation/static/js/main.2c72d6d0.js.map",
+    "787.e5a734ac.chunk.js.map": "/chat_imitation/static/js/787.e5a734ac.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.705bf57e.css",
-    "static/js/main.cd76af4b.js"
+    "static/css/main.33a2a633.css",
+    "static/js/main.2c72d6d0.js"
   ]
 }
