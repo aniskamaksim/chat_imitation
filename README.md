@@ -1,4 +1,4 @@
-## Chat imitation 
+## Chat simulation 
 ### This is educational project made with React and Typescript.
 ### You can chat with your imaginary friend as long as you have the patience.
 #### You can send messages, edit or delete names, messages.
