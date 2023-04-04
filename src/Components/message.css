@@ -1,0 +1,78 @@
+.left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start
+}
+
+.mine {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+    background-color: #dbf7ff;
+    padding: 5px 15px;
+    width: fit-content;
+    float: right;
+    text-align: left;
+    margin-right: 10px;
+    box-shadow: 0px 3px 4px 0px #1D21261A;
+}
+
+.mine:before {
+    content: "";
+    position: relative;
+    left: 103%;
+    top: 26%;
+    display: flex;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(39px at top right, transparent 50%, rgb(219, 247, 255) 0) no-repeat right bottom;
+}
+
+.aliens {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    align-items: center;
+    border: none;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    padding: 5px 10px;
+    width: fit-content;
+    float: left;
+    margin-left: 10px;
+    box-shadow: 0px 3px 4px 0px #1D21261A;
+}
+
+.aliens:before {
+    content: "";
+    position: relative;
+    right: 100%;
+    top: 26%;
+    display: block;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(39px at top left, transparent 50%, rgba(242, 242, 242, 1) 0) no-repeat right bottom;
+}
+
+.Edit_Delete {
+    display: flex;
+    flex-direction: row;
+    padding-right: 6px;
+}
+
+.no-display {
+    display: none;
+}
+
+.deleted {
+    font-style: italic;
+}
