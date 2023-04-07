@@ -1,0 +1,1 @@
+Mom, watch, Im move into redux!
