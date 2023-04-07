@@ -5,10 +5,10 @@
 
 ***Implemented in this app:***
 
-1. date/Time API;
-2. useState, useEffect, useRef hooks;
-3. material UI components;
-4. 3 way CSS using;
+ 1. React-Redux / TypeScript;
+ 2. Date/Time API;
+ 3. useState, useEffect, useRef, useDispatch, useSelector hooks;
+ 4. 3 way CSS using;
  in short, enjoy the CRUD :)
 
 ***Not yet:***
