@@ -1,55 +1,40 @@
 import React, {KeyboardEvent, ChangeEvent, FC, useState} from 'react';
-import {UserType} from "../App";
+import {MessageType, UserType} from "../App";
 import "./message.css";
 import EditIcon from "@mui/icons-material/Edit";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from '@mui/icons-material/Delete';
 import {TextField} from "@mui/material";
+import {useDispatch} from "react-redux";
+import {DeleteMessageAC, EditMessageAC} from "../Store/message-reducers";
 
 type MessagesPropsType = {
-    idUser: string,
-    idMessage: string,
+    messages: MessageType,
     users: UserType,
-    messagesText: string
-    deleteMessage: (messageId: string) => void,
-    editMessage: (messageId: string, newMessageText: string) => void,
-    time: string,
 }
-export const Messages: FC<MessagesPropsType> = (
-    {
-        idUser,
-        idMessage,
-        users,
-        messagesText,
-        deleteMessage,
-        editMessage,
-        time
-    }
-) => {
-
-    const [newTextMessage, setNewTextMessage] = useState<string>(messagesText);
+export const Messages: FC<MessagesPropsType> = ({messages, users}) => {
+    const dispatch = useDispatch();
+    const [newTextMessage, setNewTextMessage] = useState<string>(messages.messageText);
     const [edit, setEdit] = useState<boolean>(false);
+
     const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        console.log(event.currentTarget.value)
         setNewTextMessage(event.currentTarget.value);
     }
     const switchEditMode = () => {
         !edit ? setEdit(true) : setEdit(false);
-        editMessage(idMessage, newTextMessage);
+        dispatch(EditMessageAC(messages.idMessage, newTextMessage));
     }
     const onKewDownHandler = (event: KeyboardEvent) => {
         event.key === "Enter" && switchEditMode();
     }
-    const deleteMessageHandler = () => {
-        deleteMessage(idMessage);
-    }
-    const currTime = new Date().toTimeString().slice(0,5)
-    const isThisMessageMy = idUser === users.id;
+
+    const isThisMessageMy = messages.idUser === users.id;
     return (
         <div className={isThisMessageMy ? "left" : "right"}>
             {!edit ?
                 <div className={isThisMessageMy ? "mine" : "aliens"} onDoubleClick={switchEditMode}>
-                    <span className={messagesText === "message deleted" ? "deleted" : ""}>{messagesText}</span>
+                    <span
+                        className={messages.messageText === "message deleted" ? "deleted" : ""}>{messages.messageText}</span>
                 </div> :
                 <TextField type={"text"}
                            value={newTextMessage}
@@ -61,7 +46,7 @@ export const Messages: FC<MessagesPropsType> = (
                            color={"secondary"}
                 />
             }
-            <div className={"time"}>{time}</div>
+            <div className={"time"}>{messages.time}</div>
             <div className={isThisMessageMy ? "Edit_Delete" : "no-display"}>
                 <IconButton disabled={!isThisMessageMy}
                             color={"primary"}
@@ -75,11 +60,10 @@ export const Messages: FC<MessagesPropsType> = (
                 <IconButton disabled={!isThisMessageMy}
                             color={"primary"}
                             size={"small"}
-                            onClick={deleteMessageHandler}
+                            onClick={() => dispatch(DeleteMessageAC(messages.idMessage))}
                 >
                     <DeleteIcon fontSize="inherit"
                                 color={"secondary"}
-
                     />
                 </IconButton>
             </div>

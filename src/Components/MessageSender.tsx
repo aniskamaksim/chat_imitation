@@ -2,19 +2,20 @@ import React, {ChangeEvent, FC, KeyboardEvent, useEffect, useRef, useState} from
 import "./messageSender.css"
 import {TextField, Button} from "@mui/material";
 import SendIcon from '@mui/icons-material/Send';
+import {useDispatch} from "react-redux";
+import {AddMessageAC} from "../Store/message-reducers";
 
 type MessageSenderType = {
-    userId: string,
-    addMessage: (userId: string, newMessageText: string) => void,
+    userId: string
     // lastMessageScroll: () => void
 }
 export const MessageSender: FC<MessageSenderType> = (
     {
         userId,
-        addMessage,
         // lastMessageScroll
     }
 ) => {
+    const dispatch = useDispatch();
     const [text, setText] = useState<string>("");
     const [error, setError] = useState<boolean>(false);
     const isMessageCorrect = text.trim().length;
@@ -23,7 +24,7 @@ export const MessageSender: FC<MessageSenderType> = (
         setError(false);
     }
     const addMessageHandler = () => {
-        isMessageCorrect ? addMessage(userId, text) : setError(true);
+        isMessageCorrect ? dispatch(AddMessageAC(userId, text)) : setError(true);
         setText("");
         // lastMessageScroll();
     }

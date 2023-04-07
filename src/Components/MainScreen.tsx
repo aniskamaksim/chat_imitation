@@ -4,67 +4,47 @@ import {Messages} from "./Messages";
 import "./mainScreen.css"
 import {MessageSender} from "./MessageSender";
 import EditIcon from "@mui/icons-material/Edit";
+import {useDispatch, useSelector} from "react-redux";
+import {ChangeUserNameAC, ChangeUserStatusAC} from "../Store/user-reducers";
+import {rootReducerType} from "../Store/store";
 
 type MainScreenType = {
-    userId: string
-    messages: MessageType[],
-    users: UserType,
-    addMessage: (UserId: string, newMessageText: string) => void,
-    deleteMessage: (messageId: string) => void,
-    editMessage: (messageId: string, newMessageText: string) => void,
-    hideNumber: (userId: string) => void,
-    changeStatus: (userId: string) => void,
-    userStatus: boolean[],
-    changeUserName: (userId: string, newName: string) => void
+    users: UserType
 }
-export const MainScreen: FC<MainScreenType> = (
-    {
-        userId,
-        messages,
-        users,
-        addMessage,
-        deleteMessage,
-        editMessage,
-        hideNumber,
-        changeStatus,
-        userStatus,
-        changeUserName
-    }
-) => {
-    const [userName, setUserName] = useState<string>(users.userName);
-    const [edit, setEdit] = useState<boolean>(false)
+export const MainScreen: FC<MainScreenType> = ({users}) => {
+    const dispatch = useDispatch();
+    const messages = useSelector<rootReducerType, MessageType[]>((state) => state.messages)
+    const [newUserName, setNewUserName] = useState<string>(users.userName);
+    const [edit, setEdit] = useState<boolean>(false);
+
     const divRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
         if (divRef.current) {
             divRef.current.scrollIntoView({behavior: 'smooth'});
         }
     }, [messages]);
-    const lastSeenTime = new Date().toTimeString().slice(0, 5);
 
     const onChangeNameHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        setUserName(event.currentTarget.value)
+        setNewUserName(event.currentTarget.value)
     }
     const onKeyDownHandler = (event: KeyboardEvent) => {
         event.key === "Enter" && switchEdit();
     }
     const switchEdit = () => {
         edit ? setEdit(false) : setEdit(true);
-        changeUserName(userId, userName);
+        dispatch(ChangeUserNameAC(users.id, newUserName));
     }
 
     const messagesMap = messages.map((e) => {
         return (
-            <Messages key={e.idMessage}
-                      idUser={e.idUser}
-                      idMessage={e.idMessage}
-                      users={users}
-                      messagesText={e.messageText}
-                      deleteMessage={deleteMessage}
-                      editMessage={editMessage}
-                      time={e.time}
+            <Messages
+                key={e.idMessage}
+                users={users}
+                messages={e}
             />
         )
     });
+    const lastSeenTime = new Date().toTimeString().slice(0, 5);
     return (
         <div className={"MainScreen"}>
             <div className={"UserBlock"}>
@@ -74,7 +54,7 @@ export const MainScreen: FC<MainScreenType> = (
                         {!edit ?
                             <span onDoubleClick={switchEdit}>{users.userName}</span> :
                             <input type={"text"}
-                                   value={userName}
+                                   value={newUserName}
                                    onBlur={switchEdit}
                                    autoFocus={true}
                                    onChange={onChangeNameHandler}
@@ -89,20 +69,22 @@ export const MainScreen: FC<MainScreenType> = (
                     <div className={"lastSeen"}>last seen at {lastSeenTime}</div>
                 </div>
             </div>
-            <div className={"InputAndNumber"}><input type={"checkbox"} defaultChecked={true}
-                                                     onChange={() => changeStatus(userId)}/>
+            <div className={"InputAndNumber"}>
+                <input type={"checkbox"}
+                       defaultChecked={true}
+                       onChange={() => dispatch(ChangeUserStatusAC(users.id))}/>
                 <span>tel: +</span><span
-                    className={users.show ? "telNumber" : "notelNumber"}>{users.telNumber}</span>
-                <button onClick={() => hideNumber(userId)}>p</button>
+                className={users.show ? "telNumber" : "notelNumber"}>{users.telNumber}</span>
+                <button onClick={() => dispatch(ChangeUserStatusAC(users.id))}>p</button>
             </div>
 
             <div className={"textArea"}>
                 {messagesMap}
                 <div ref={divRef} id={"wrapper_Scroll_to_bottom" + users.id}></div>
             </div>
-            <MessageSender key={userId}
-                           userId={userId}
-                           addMessage={addMessage}
+            <MessageSender
+                // key={users.id}
+                userId={users.id}
                 //lastMessageScroll={lastMessageScroll}
             />
         </div>
