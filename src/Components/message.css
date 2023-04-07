@@ -76,3 +76,7 @@
 .deleted {
     font-style: italic;
 }
+.edited {
+    display: flex;
+    font-size: xx-small;
+}

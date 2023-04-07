@@ -43,6 +43,7 @@ export const Messages: FC<MessagesPropsType> = (
     const deleteMessageHandler = () => {
         deleteMessage(idMessage);
     }
+    const currTime = new Date().toTimeString().slice(0,5)
     const isThisMessageMy = idUser === users.id;
     return (
         <div className={isThisMessageMy ? "left" : "right"}>
